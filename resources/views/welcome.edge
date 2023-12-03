@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  {{-- @entryPointStyles('app')
+  @entryPointScripts('app') --}}
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons|Material+Icons+Outlined"
+    rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/quasar@2.14.0/dist/quasar.rtl.prod.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <main>
+    <div>
+      <h1 class="title text-h6"> It Works! </h1>
+      <p class="subtitle">
+        Congratulations, you have just created your first AdonisJS app.
+      </p>
+
+      <ul>
+        <li>
+          The route for this page is defined inside <code>start/routes.ts</code> file
+        </li>
+
+        <li>
+          You can update this page by editing <code>resources/views/welcome.edge</code> file
+        </li>
+
+        <li>
+          If you run into problems, you can reach us on <a href="https://discord.gg/vDcEjq6?">Discord</a> or the <a
+            href="https://forum.adonisjs.com/">Forum</a>.
+        </li>
+      </ul>
+      <div id="app">
+        @{{title}}
+        sdfdsfdsfdsfd
+        <p>@{{count}}</p>
+        <q-btn label="My Button" @click="incrementCount"></q-btn>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.14.0/dist/quasar.umd.prod.js"></script>
+    <script>
+      const {ref} =Vue
+      const app = Vue.createApp({
+        setup() {
+          const title="I Am view"
+          const count = ref(0)
+
+          const incrementCount=()=>{ count.value+=1}
+
+          return {
+            title,
+            count,
+            incrementCount
+          }
+
+        }
+      })
+
+      app.use(Quasar,
+      // {
+      //       config: {
+      //       /*
+      //       brand: {
+      //       // primary: '#e46262',
+      //       // ... or all other brand colors
+      //       },
+      //       notify: {...}, // default set of options for Notify Quasar plugin
+      //       loading: {...}, // default set of options for Loading Quasar plugin
+      //       loadingBar: { ... }, // settings for LoadingBar Quasar plugin
+      //       // ..and many more (check Installation card on each Quasar component/directive/plugin)
+      //       */
+      //       }
+      //       }
+            )
+      app.mount('#app')
+    </script>
+  </main>
+</body>
+
+</html>
