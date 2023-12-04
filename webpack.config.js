@@ -45,7 +45,7 @@ Encore.setPublicPath('/assets')
 | entrypoints.
 |
 */
-Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('app', './resources/js/app.ts')
 
 /*
 |--------------------------------------------------------------------------
@@ -181,11 +181,21 @@ Encore.configureDevServerOptions((options) => {
 | sure to install the required dependencies.
 |
 */
-// Encore.enableVueLoader(() => {}, {
-//   version: 3,
-//   runtimeCompilerBuild: false,
-//   useJsx: false
-// })
+Encore.enableVueLoader(() => {}, {
+  version: 3,
+  runtimeCompilerBuild: false,
+  useJsx: false,
+})
+  .enableTypeScriptLoader((config) => {
+    config.configFile = 'tsconfig.vue.json'
+  })
+  .addAliases({
+    '@': join(__dirname, 'resources/js'),
+  })
+  .configureDefinePlugin((options) => {
+    options['__VUE_OPTIONS_API__'] = true
+    options['__VUE_PROD_DEVTOOLS__'] = false
+  })
 
 /*
 |--------------------------------------------------------------------------
