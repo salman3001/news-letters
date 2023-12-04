@@ -20,7 +20,13 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import '../routes/authRoutes'
+import '../routes/helpcenterRoutes'
+import '../routes/adminRoutes'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+Route.get('/admin/dashboard', async ({ view }) => {
+  return view.render('admin/dashboard')
+}).as('admin.dashboard')

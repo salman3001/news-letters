@@ -15,7 +15,6 @@
 <body>
   <div id="app">
     <q-layout>
-      {{inspect(flashMessages)}}
       <q-page-container>
         <q-page class="row items-center justify-evenly" style="
             background-image: url('/images/login-bg.png');
@@ -38,21 +37,22 @@
               </q-card-section>
               <q-card-section class="q-pt-none">
                 <form class="q-gutter-y-md" @submit="loading=true" method="post" action="{{route('admin.login')}}">
+                  {{ csrfField() }}
                   <p class="text-red-5">{{flashMessages.get('message','')}}</p>
                   <div>
                     <label>Email</label>
-                    <q-input outlined dense v-model="form.email"></q-input>
+                    <q-input outlined dense v-model="form.email" name="email"></q-input>
                   </div>
                   <div>
                     <label>Password</label>
-                    <q-input dense outlined :type="isPwd ? 'password' : 'text'" v-model="form.password">
+                    <q-input dense outlined :type="isPwd ? 'password' : 'text'" v-model="form.password" name="password">
                       <template v-slot:append>
                         <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                           @click="isPwd = !isPwd"></q-icon>
                       </template>
                     </q-input>
                     <div class="row items-center justify-between">
-                      <q-checkbox label="Remember Me" v-model="form.rememberMe"></q-checkbox>
+                      <q-checkbox label="Remember Me" v-model="form.rememberMe" name="rememberMe"></q-checkbox>
                       <a href="" style="text-decoration: none; color: black">Forgot
                         Password</a>
                     </div>

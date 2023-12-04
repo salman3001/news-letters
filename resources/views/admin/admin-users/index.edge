@@ -1,0 +1,97 @@
+@layout('layouts/AdminLayout')
+@set('title','Admin Users' )
+
+@section('body')
+<div class="user-index">
+  <q-page class="row q-pa-lg">
+    <div class="colomn q-gutter-y-lg" style="width: 100%">
+      <div class="row justify-between q-gutter-y-sm">
+        {{-- <q-input type="text" outlined v-model="text" placeholder="Search" dense class="rounded-sm" :debounce="500"
+          @update:model-value="(val) => {
+      $emit('search', val)
+    }">
+          <template v-slot:append>
+            <q-icon v-if="text !== ''" name="close" class="cursor-pointer" />
+            <q-icon name="search" @click="text = ''" />
+          </template>
+        </q-input> --}}
+
+        <div class="row q-gutter-sm">
+          {{-- <q-select v-model="roleId" v-if="!rolesLoading" dense options-dense emit-value map-options outlined
+            :options="[{ label: 'All', value: null }, ...roles.map((r: any) => ({
+          label: r.name,
+          value: r.id,
+        }))]" label="Role" class="col-auto" style="min-width: 8rem" />
+          <q-select outlined dense options-dense emit-value map-options v-model="status" :options="[
+          { label: 'All', value: null },
+          { label: 'Active', value: 1 },
+          { label: 'Inactive', value: 0 },
+        ]" label="Status" class="col-auto" style="min-width: 8rem" />
+          <q-btn-dropdown outline label="Export" style="border: 1px solid lightgray">
+            <q-list dense>
+              <q-item clickable v-close-popup @click="exportCSV(colomns, data)">
+                <q-item-section>
+                  <q-item-label>
+                    <q-icon name="receipt_long" /> Export CSV</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+          <a href="">
+            <q-btn color="primary">+ Add User</q-btn>
+          </a> --}}
+        </div>
+      </div>
+      <div class="q-markup-table q-table__container q-table__card q-table--horizontal-separator q-table--no-wrap">
+        <table class="q-table zebra-table" style="">
+          <thead>
+            <tr>
+              <th class="text-left">Name</th>
+              <th class="text-right">Email</th>
+              <th class="text-right">Role</th>
+              <th class="text-right">Phone</th>
+              <th class="text-right">Status</th>
+              <th class="text-right">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(user in users)
+            <tr>
+              <td class="text-left">
+                <q-avatar size=" 30px">
+                  @if(user?.avatar?.url)
+                  <img src="{{await Drive.getSignedUrl(user.avatar.url)}}"
+                    style="border:{{user.is_active === 1? '2px green solid': '2px red solid;'}};" />
+                  @end
+                </q-avatar>
+                <div>
+                  {{user.firstName}} {{user.lastName}}
+                </div>
+              </td>
+              <td class="text-right">{{user.email}}</td>
+              <td class="text-right">{{user?.role?.name}}</td>
+              <td class="text-right">{{user.phone}}</td>
+              <td class="text-right">
+                <div>
+                  <q-badge v-if="{{user.isActive==1}}" color="positive" outline label="Active"></q-badge>
+                  <q-badge v-if="{{user.isActive!=1}}" color="secondary" outline label="Inactive"></q-badge>
+                </div>
+              </td>
+              <td class="text-right">87</td>
+            </tr>
+            @else
+            No User Found...
+            @end
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </q-page>
+</div>
+<script>
+
+
+</script>
+@end

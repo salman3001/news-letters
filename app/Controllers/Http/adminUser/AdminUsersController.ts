@@ -11,7 +11,12 @@ import RoleService from 'App/services/admin/RoleService'
 import ImageService from 'App/services/ImageService'
 
 export default class AdminUsersController {
-  public async index({ response, request }: HttpContextContract) {
+  public async index({ view, request }: HttpContextContract) {
+    const users = await AdminUser.query().preload('avatar').preload('avatar')
+    return view.render('admin/admin-users/index', { users })
+  }
+
+  public async query({ response, request }: HttpContextContract) {
     const qs = request.qs() as IndexQs
     const users = await AdminUserService.index(qs)
     return response.json(users)

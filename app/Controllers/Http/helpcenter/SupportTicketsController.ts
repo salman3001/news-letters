@@ -2,10 +2,10 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import SupportTicketService from 'App/services/helpcenter/SupportTicketService'
 
 export default class SupportTicketsController {
-  public async index({ request, response }: HttpContextContract) {
+  public async index({ request, view }: HttpContextContract) {
     const qs = request.qs() as any
-    const records = await SupportTicketService.index(qs)
-    return response.json(records)
+    // const records = await SupportTicketService.index(qs)
+    return view.render('admin/help-center/support-tickets/index')
   }
 
   public async store({ request, response }: HttpContextContract) {

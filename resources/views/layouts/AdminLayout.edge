@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons|Material+Icons+Outlined"
+    rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/quasar@2.14.0/dist/quasar.rtl.prod.css" rel="stylesheet" type="text/css">
+  <style>
+    .zebra-table tbody tr:nth-child(odd) {
+      background-color: #faf9f6 !important;
+    }
+
+    .zebra-table tbody td {
+      border-bottom-width: 0px !important;
+      border-top-width: 0px !important;
+    }
+  </style>
+</head>
+
+<body>
+  @!component('components/loading-mask')
+  <div id="admin-layout">
+    <q-layout view="lHh Lpr lFf">
+      <q-header>
+        <q-toolbar class="bg-white text-black" style="width: 100%">
+          <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer"></q-btn>
+          <q-toolbar-title>
+            @!component('components/brand-logo')
+          </q-toolbar-title>
+          <div class="row q-gutter-sm">
+            <div class="gt-sm">
+              @!component('components/nav-search')
+            </div>
+            @!component('components/admin/notification-menu')
+            @!component('components/admin/profile-menu')
+          </div>
+        </q-toolbar>
+        <q-toolbar class="bg-white text-black" style="border: 1px solid rgba(0, 0, 0, 0.106)">
+          <div>
+            @component('components/admin/NavMenu',{title:'Admin Users'})
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{{route('admin_users.index')}}" class="text-black" style="text-decoration: none">Admin
+                  Users</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{ name: 'admin.roles.index' }" class="text-black" style="text-decoration: none">Roles</a>
+              </q-item-section>
+            </q-item>
+            @end
+            @component('components/admin/NavMenu',{title:'Help Center'})
+            <q-item style="padding: 0">
+              <q-item-section style="padding: 0">
+                <q-btn class="text-black" label="Knowledgebase" unelevated icon-right="chevron_right"
+                  style="width: 100%; text-transform: none">
+                  <q-menu anchor="center right" style="border-radius: 14px; border-top: 4px solid black">
+                    <q-list style="min-width: 100px" dense>
+                      <q-item clickable v-close-popup>
+                        <q-item-section>
+                          <a href="" class="text-black" style="text-decoration: none">Content</a>
+                        </q-item-section>
+                      </q-item>
+                      <q-item clickable v-close-popup>
+                        <q-item-section>
+                          <a href="{
+                          name: 'admin.knowlegebase.category.index',
+                        }" class="text-black" style="text-decoration: none">Categories</a>
+                        </q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </q-btn>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{{
+                  route('support_ticket.index')
+                }}" class="text-black" style="text-decoration: none">Support ticket</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a class="text-black" style="text-decoration: none">Contact Messages</a>
+              </q-item-section>
+            </q-item>
+            @end
+            @component('components/admin/NavMenu',{title:'Blogs'})
+
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.blogs.index',
+                }" class="text-black" style="text-decoration: none">Blog Posts</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.blogs.category.index',
+                }" class="text-black" style="text-decoration: none">Blog Categories</a>
+              </q-item-section>
+            </q-item>
+            @end
+            @component('components/admin/NavMenu',{title:'Locations'})
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.location.continent.index',
+                }" class="text-black" style="text-decoration: none">Continents</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.location.country.index',
+                }" class="text-black" style="text-decoration: none">Countries</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.location.state.index',
+                }" class="text-black" style="text-decoration: none">States</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.location.city.index',
+                }" class="text-black" style="text-decoration: none">Cities</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.location.street.index',
+                }" class="text-black" style="text-decoration: none">Street</a>
+              </q-item-section>
+            </q-item>
+            @end
+            <a href="{
+            name: 'admin.user.index',
+          }" class="text-black" style="text-decoration: none;text-transform: uppercase; font-weight: 500;">
+
+              <q-btn flat>
+
+                Users
+              </q-btn>
+            </a>
+            @component('components/admin/NavMenu',{title:'Products'})
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.product.index',
+                }" class="text-black" style="text-decoration: none">Product List</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.productCategory.index',
+                }" class="text-black" style="text-decoration: none">Product Category</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.productSubcategory.index',
+                }" class="text-black" style="text-decoration: none">Product Subcategory</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.productTag.index',
+                }" class="text-black" style="text-decoration: none">Product Tags</a>
+              </q-item-section>
+            </q-item>
+            @end
+            @component('components/admin/NavMenu',{title:'Services'})
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.service.index',
+                }" class="text-black" style="text-decoration: none">Service List</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.serviceCategory.index',
+                }" class="text-black" style="text-decoration: none">Service Category</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.serviceSubcategory.index',
+                }" class="text-black" style="text-decoration: none">Service Subcategory</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.serviceTag.index',
+                }" class="text-black" style="text-decoration: none">Service Tags</a>
+              </q-item-section>
+            </q-item>
+            @end
+            @component('components/admin/NavMenu',{title:'News Letters'})
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.subscriber.index',
+                }" class="text-black" style="text-decoration: none">Subscribers</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.template.index',
+                }" class="text-black" style="text-decoration: none">Templates</a>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup>
+              <q-item-section>
+                <a href="{
+                  name: 'admin.campaign.index',
+                }" class="text-black" style="text-decoration: none">Campaigns</a>
+              </q-item-section>
+            </q-item>
+            @end
+          </div>
+        </q-toolbar>
+      </q-header>
+
+      <q-drawer :behavior="'mobile'" v-model="leftDrawerOpen" show-if-above bordered>
+      </q-drawer>
+
+      <q-page-container class="q-pa-sm q-pa-sm-xl">
+        @!section('body')
+      </q-page-container>
+      {{--
+      <BaseModal /> --}}
+    </q-layout>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quasar@2.14.0/dist/quasar.umd.prod.js"></script>
+  <script src="/js/admin/adminLayout.js"></script>
+  <script src="/js/loading-mask.js"></script>
+</body>
+
+</html>
