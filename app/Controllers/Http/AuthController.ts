@@ -1,10 +1,8 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AuthController {
-  public async adminLoginForm({ inertia }: HttpContextContract) {
-    console.log('ran')
-
-    return inertia.render('admin/login')
+  public async adminLoginForm({ view }: HttpContextContract) {
+    return view.render('admin/login')
   }
 
   public async adminLogin({ auth, request, response, session }: HttpContextContract) {

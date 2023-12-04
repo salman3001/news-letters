@@ -1,5 +1,5 @@
 const { ref } = Vue
-const adminLayoutApp = Vue.createApp({
+const app = Vue.createApp({
   setup() {
     const leftDrawerOpen = ref(false)
 
@@ -14,7 +14,7 @@ const adminLayoutApp = Vue.createApp({
   },
 })
 
-adminLayoutApp.use(Quasar, {
+app.use(Quasar, {
   config: {
     brand: {
       primary: '#050101',
@@ -29,4 +29,3 @@ adminLayoutApp.use(Quasar, {
     // ..and many more (check Installation card on each Quasar component/directive/plugin)
   },
 })
-adminLayoutApp.mount('#admin-layout')

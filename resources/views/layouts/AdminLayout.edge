@@ -24,7 +24,7 @@
 
 <body>
   @!component('components/loading-mask')
-  <div id="admin-layout">
+  <div id="app">
     <q-layout view="lHh Lpr lFf">
       <q-header>
         <q-toolbar class="bg-white text-black" style="width: 100%">
@@ -245,7 +245,7 @@
       <q-drawer :behavior="'mobile'" v-model="leftDrawerOpen" show-if-above bordered>
       </q-drawer>
 
-      <q-page-container class="q-pa-sm q-pa-sm-xl">
+      <q-page-container class="q-pa-lg">
         @!section('body')
       </q-page-container>
       {{--
@@ -254,7 +254,11 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.prod.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/quasar@2.14.0/dist/quasar.umd.prod.js"></script>
-  <script src="/js/admin/adminLayout.js"></script>
+  <script src="/js/admin/app.js"></script>
+  @!section('scripts')
+  <script>
+    app.mount('#app')
+  </script>
   <script src="/js/loading-mask.js"></script>
 </body>
 

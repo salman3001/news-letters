@@ -23,10 +23,10 @@ import '../routes/authRoutes'
 import '../routes/helpcenterRoutes'
 import '../routes/adminRoutes'
 
-Route.get('/', async ({ inertia }) => {
-  return inertia.render('Home')
+Route.get('/', async ({ view }) => {
+  return view.render('welcome')
 })
 
-Route.get('/admin/dashboard', async ({ inertia }) => {
-  return inertia.render('admin/dashboard')
+Route.get('/admin/dashboard', async ({ view }) => {
+  return view.render('admin/dashboard')
 }).as('admin.dashboard')

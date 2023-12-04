@@ -2,8 +2,8 @@
 @set('title','Admin Users' )
 
 @section('body')
-<div class="user-index">
-  <q-page class="row q-pa-lg">
+<index-page v-slot="props">
+  <q-page class="row ">
     <div class="colomn q-gutter-y-lg" style="width: 100%">
       <div class="row justify-between q-gutter-y-sm">
         {{-- <q-input type="text" outlined v-model="text" placeholder="Search" dense class="rounded-sm" :debounce="500"
@@ -42,6 +42,7 @@
           </a> --}}
         </div>
       </div>
+      {{-- {{inspect(users)}} --}}
       <div class="q-markup-table q-table__container q-table__card q-table--horizontal-separator q-table--no-wrap">
         <table class="q-table zebra-table" style="">
           <thead>
@@ -82,16 +83,51 @@
             @else
             No User Found...
             @end
-          </tbody>
         </table>
+        </tbody>
       </div>
-
-
+      <div class="q-pa-lg flex justify-end">
+        @!component('components/pagination')
+      </div>
     </div>
   </q-page>
-</div>
+</index-page>
+@end
+@section('scripts')
 <script>
+  const index = {
+    setup() {
+      const currentPage = Vue.ref({{ users.currentPage }})
+    const sendToUrl = (v) => {
+      window.location.href = `{{route('admin_users.index')}}?page=${v}`
+    }
+      return {
+      sendToUrl,
+      currentPage
+    }
 
+  },
+    template: `<div><slot :currentPage="currentPage" :sendToUrl="sendToUrl"></slot></div>`
+  }
+
+  app.component('index-page', index)
+  // Vue.createApp({
+  //   setup() {
+  //     const currentPage = Vue.ref(3)
+  //     const name = 'salman'
+
+
+  //     vue.onMounted(() => {
+  //       console.log('ddd');
+
+  //     })
+
+  //     return {
+  //       currentPage,
+  //       name
+  //     }
+  //   }
+  // }).mount('#user-index')
 
 </script>
 @end

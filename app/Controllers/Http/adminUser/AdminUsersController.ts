@@ -12,8 +12,10 @@ import ImageService from 'App/services/ImageService'
 
 export default class AdminUsersController {
   public async index({ view, request }: HttpContextContract) {
-    const users = await AdminUser.query().preload('avatar').preload('avatar')
-    return view.render('admin/admin-users/index', { users })
+    const page = request.input('page', 1)
+    const users = await AdminUser.query().preload('avatar').preload('role').paginate(page, 1)
+    const roles = await Role.all()
+    return view.render('admin/admin-users/index', { users, roles })
   }
 
   public async query({ response, request }: HttpContextContract) {
